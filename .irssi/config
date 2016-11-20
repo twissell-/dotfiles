@@ -134,7 +134,8 @@ channels = (
   { name = "#ircsource"; chatnet = "IRCSource"; autojoin = "No"; },
   { name = "#netfuze"; chatnet = "NetFuze"; autojoin = "No"; },
   { name = "#oftc"; chatnet = "OFTC"; autojoin = "No"; },
-  { name = "silc"; chatnet = "SILC"; autojoin = "No"; }
+  { name = "silc"; chatnet = "SILC"; autojoin = "No"; },
+  { name = "#anilist"; chatnet = "Rizon"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -392,7 +393,20 @@ statusbar = {
 settings = {
   core = { real_name = "demo"; user_name = "demo"; nick = "demo"; };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = ""; };
+  "fe-common/core" = { theme = "demo"; bell_beeps = "yes"; };
   "perl/core/scripts" = { awl_shared_sbar = "OFF"; };
 };
-hilights = ( { text = "demo"; nick = "yes"; word = "yes"; } );
+hilights = (
+  {
+    text = "((http[s]?|ftp):\\/)?\\/?([^:\\/\\s]+)((\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)(.*)?(#[\\w\\-]+)?";
+    color = "%R";
+    nick = "yes";
+    word = "yes";
+    regexp = "yes";
+  },
+  { 
+    text = "demo -actcolor %R  -color %R";
+    nick = "yes";
+    word = "yes";
+  }
+);
