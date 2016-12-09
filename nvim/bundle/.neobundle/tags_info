@@ -1,0 +1,8 @@
+indentLine
+neobundle.vim
+nerdtree
+nerdtree-git-plugin
+vim-airline
+vim-airline-themes
+vim-gitgutter
+vim-nerdtree-tabs

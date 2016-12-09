@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/damian/.vim/bundle/.neobundle'
+let g:netrw_dirhist_2='/home/damian/.irssi'
+let g:netrw_dirhist_3='/home/damian/.config/nvim'
+let g:netrw_dirhist_4='/home/damian/dev/anipy/anipy'
+let g:netrw_dirhist_5='/home/damian/dev/anipy/anipy/__pycache__'
+let g:netrw_dirhist_6='/home/damian/dev/anipy/anipy/ani'
