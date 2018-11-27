@@ -168,7 +168,11 @@ bar {
         tray_output primary
 }
 
-#exec --no-startup-id nm-applet
+#
+# custom config
+#
+
+exec --no-startup-id nm-applet
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
