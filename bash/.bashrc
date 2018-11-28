@@ -112,38 +112,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-alias sboxctl='bash $HOME/sboxTools/sboxctl-lxc.sh'
 
-alias tti='bash /home/damian/bin/data-tools/instanceTools/copyToolAndGoToInstance'
-alias ttqa='/home/damian/bin/data-tools/instanceTools/copyToolAndGoToQa'
-alias wgo='bash /home/damian/bin/data-tools/instanceTools/wgo'
-alias wis='bash /home/damian/bin/data-tools/instanceTools/whereIs'
-alias qcsv='bash /home/damian/bin/data-tools/instanceTools/instanceQueryToCSV'
-alias go='bash /home/damian/bin/data-tools/instanceTools/go'
-alias rgo='bash /home/damian/bin/data-tools/instanceTools/rgo'
-alias gomyqa='bash /home/damian/bin/data-tools/instanceTools/goMyQA'
-alias qia='bash /home/damian/bin/data-tools/instanceTools/queryInAll'
-alias goqa='bash /home/damian/bin/data-tools/instanceTools/goQA'
-alias rgomy='bash /home/damian/bin/data-tools/instanceTools/rgomy'
-alias uigo='python /home/damian/bin/other-tools/uigo'
-alias subl='/home/damian/.config/sublime_text_3/sublime_text'
-alias notes='/home/damian/dev/notes.sh'
-alias zenki='ssh-copy-id -i ~/.ssh/id_rsa.pub'
-
-alias siemens-iats='ssh iatsapp-tc1 '
-alias rsiemens-iats='ssh iatsapp-gu1'
-alias siemens-db='ssh iatsdb-tc1 '
-alias rsiemens-db='ssh iatsdb-gu1'
-alias siemens-inte='ssh integrations-siemens-tc1'
-
-
-if [[ -z "$TMUX" ]]; then
-    if tmux has-session 2>/dev/null; then
-        exec tmux attach
-    else
-        exec tmux
-    fi
-fi
+# unomment if use tmux
+# if [[ -z "$TMUX" ]]; then
+#     if tmux has-session 2>/dev/null; then
+#         exec tmux attach
+#     else
+#         exec tmux
+#     fi
+# fi
 
 function _update_ps1() {
     PS1=$(powerline-shell $?)
