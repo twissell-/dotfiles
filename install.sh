@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp -r .i3 ~i
+cp -r .i3 ~
 cp -r .config/* ~/.config
 
 cp .i3blocks.conf ~
