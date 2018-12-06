@@ -1,0 +1,9 @@
+xrandr --output eDP1 --auto --output HDMI1 --auto --panning 1920x1080+1600+0 --right-of eDP1 --output HDMI2 --auto --panning 1920x1080+3520+0 --right-of HDMI1
+
+xrandr --output eDP1 --auto --output HDMI1 --auto --panning 1920x1080-960+0 --above eDP1 --output HDMI2 --auto --panning 1920x1080+1920+0 --right-of HDMI1
+
+setxkbmap -layout us,us -variant alt-intl
+
+sudo apt install rofi
+sudo apt install feh
+

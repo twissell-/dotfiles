@@ -1,0 +1,62 @@
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+# Global properties
+command=~/.i3/scripts/$BLOCK_NAME
+align=center
+separator=false
+separator_block_width=20
+markup=pango
+
+# Blocks
+
+[mediaplay]
+interval=1
+color=#E88939
+
+# Free space of /
+
+# CPU usage
+[cpu_usage]
+interval=2
+color=#589df6
+
+# Free RAM
+[memory]
+command=printf "\\uf013 " && ~/.i3/scripts/memory
+interval=2
+color=#21b089
+
+# Volume
+[volume]
+interval=1
+signal=10
+color=#f9555f
+
+# Battery indicator
+[battery]
+interval=30
+color=#E88939
+
+# Wifi signal strenght
+[wifi]
+command=printf "\\uf1eb " && ~/.i3/scripts/wifi
+instance=wlp8s0
+interval=5
+color=#589df6
+
+# Time
+[time]
+command=printf "\\uf017 " && date '+%I:%M'
+interval=5
+color=#21b089
+
+# Date
+[date]
+command=printf "date '+%A%e '"
+interval=1
+color=#f9555f
+

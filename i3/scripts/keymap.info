@@ -1,4 +1,0 @@
-rules:      evdev
-model:      pc105
-layout:     us,us
-variant:    altgr-intl,
