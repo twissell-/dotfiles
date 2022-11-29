@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ -n "${1}" ]]; then
+	extra_tz=$1
+fi
+
+extra=""
+for tz in $extra_tz; do
+	extra+=$(export TZ="${tz}"; date '+%H|')
+done
+
+local_time=$(date '+%Y-%m-%d %H:%M:%S')
+
+cq="$(date +'%q')"
+for i in {0..100}; do
+    nq="$(date +'%q' -d"$i days")"
+    if [[ "${nq}" != "${cq}" ]]; then
+        q="Q${cq}: ${i}d left"
+        break
+    fi
+done
+
+
+echo "${q} | ${local_time} (${extra%|})"
+exit 0

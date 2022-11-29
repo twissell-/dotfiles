@@ -4,7 +4,7 @@ dotfiles
 bash
 ----
 
-* Powerline: [powerline-shell][powerline-shell] 
+* Powerline: [starship][starship] 
 
 i3
 --
@@ -31,6 +31,6 @@ TODO
 [oh-my-fish]: https://github.com/oh-my-fish/oh-my-fish
 [bobthefish]: https://github.com/oh-my-fish/theme-bobthefish
 [powerline-fonts]: https://github.com/powerline/fonts
-[powerline-shell]: https://github.com/b-ryan/powerline-shell
+[starship]: https://starship.rs
 [rofi]: https://github.com/DaveDavenport/rofi
 

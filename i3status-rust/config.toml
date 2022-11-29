@@ -1,0 +1,81 @@
+icons = "awesome"
+
+[theme]
+name = "space-villain"
+
+[theme.overrides]
+critical_bg = "#C79DD7"
+critical_fg = "#FFFFFF"
+warning_bg = "#C79DD7"
+warning_fg = "#FFFFFF"
+good_bg = "#42354A"
+good_fg = "#FFFFFF"
+info_bg = "#42354A"
+info_fg = "#FFFFFF"
+idle_bg = "#42354A"
+idle_fg = "#FFFFFF"
+separator = ""
+
+[[block]]
+block = "watson"
+show_time = true
+state_path = "/home/damian/.config/watson/state"
+interval = 5
+
+[[block]]
+block = "music"
+buttons = ["prev", "play", "next"]
+hide_when_empty = true
+
+# [[block]]
+# block = "sound"
+
+[[block]]
+block = "backlight"
+
+# [[block]]
+# block = "speedtest"
+# interval = 1800
+# format = "{speed_down:4*B}{speed_up:4*B}"
+
+[[block]]
+block = "net"
+format = "{signal_strength}"
+# format = "{signal_strength}{speed_down;K*b}{speed_up;K*b}"
+interval = 5
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage} {time}"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "custom"
+interval = 5
+command = "~/.config/i3blocks/blocks/time 'UTC+3'"
+on_click = "/usr/bin/gnome-calendar"

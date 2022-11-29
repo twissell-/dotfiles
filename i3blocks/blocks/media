@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [[ $1 == 1 ]]; then
+	playerctl previous; sleep 1
+elif [[ $1 == 2 ]]; then
+	playerctl play-pause; sleep 1
+elif [[ $1 == 3 ]]; then
+	playerctl next; sleep 1
+fi
+
+player_status=$(playerctl status 2> /dev/null)
+player_artist=$(playerctl metadata artist)
+player_titles=$(playerctl metadata title)
+output=""
+
+if [ "$player_titles" != "" ]; then
+	if [ "$player_status" = "Playing" ]; then
+	    output=" $player_artist - $player_titles"
+	elif [ "$player_status" = "Paused" ]; then
+	    output=" $player_artist - $player_titles"
+	elif [ "$player_status" = "Stopped" ]; then
+	    output=" $player_artist - $player_titles"
+    fi
+fi
+
+echo "${output}"
+exit 0
