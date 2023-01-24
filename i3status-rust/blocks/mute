@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# echo "  "
+is_muted=$(pacmd list-sources | sed -n '/* index: /,/current latency/p' | grep 'muted:' | awk '{print $2}')
+
+if ! grep -q RUNNING /proc/asound/card*/pcm0c/sub0/status; then
+    echo "{\"state\":\"Info\", \"text\": \"\"}"
+elif [[ "${is_muted}" = "yes" ]]; then
+    # echo "{\"state\":\"Warning\", \"text\": \"\"}"
+    echo "{\"state\":\"Warning\", \"text\": \"\"}"
+else
+    echo "{\"state\":\"Info\", \"text\": \"\"}"
+fi
+
+exit 0

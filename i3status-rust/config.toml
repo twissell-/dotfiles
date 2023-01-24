@@ -77,5 +77,13 @@ format = "{1m}"
 [[block]]
 block = "custom"
 interval = 5
-command = "~/.config/i3blocks/blocks/time 'UTC+3'"
+command = "/home/damian/bin/dotfiles/i3status-rust/blocks/time 'UTC+3'"
 on_click = "/usr/bin/gnome-calendar"
+
+[[block]]
+block = "custom"
+interval = 1
+command = "/home/damian/bin/dotfiles/i3status-rust/blocks/mute"
+json = true
+on_click = "/home/damian/bin/dotfiles/i3/scripts/mic-control.sh"
+# hide_when_empty = true

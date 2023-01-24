@@ -298,3 +298,12 @@ focus_follows_mouse no
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
+
+# i3-layout-manager
+bindsym Mod4+Shift+w exec --no-startup-id /home/damian/bin/i3-layout-manager/layout_manager.sh
+
+# Mune/Unmute
+bindsym $mod+c exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/mic-control.sh
+
+# automations
+bindsym $mod+Ctrl+9 exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/totoca.sh

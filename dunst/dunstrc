@@ -413,6 +413,15 @@
    frame_color = "#ff0000"
    timeout = 0
 
+[mic_control]
+   appname = "mic_control"
+   background = "#673888"
+   foreground = "#ffffff"
+   frame_color = "#C79DD7"
+   timeout = 1
+   history_ignore = yes
+   set_stack_tag = "mic_control"
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
