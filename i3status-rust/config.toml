@@ -17,14 +17,27 @@ idle_fg = "#FFFFFF"
 separator = ""
 
 [[block]]
-block = "watson"
-show_time = true
-state_path = "/home/damian/.config/watson/state"
-interval = 5
+block = "custom"
+interval = 1
+command = "TOGGL_API_TOKEN='' /home/damian/bin/dotfiles/i3status-rust/blocks/toggl"
+json = true
+# shell = "/usr/bin/bash"
+# on_click = "/home/damian/bin/dotfiles/i3/scripts/mic-control.sh"
+# hide_when_empty = true
+
+[[block]]
+block = "custom"
+interval = 1
+command = "TOGGL_API_TOKEN='' /home/damian/bin/dotfiles/i3status-rust/blocks/toggl-objective"
+json = true
+# shell = "/usr/bin/bash"
+# on_click = "/home/damian/bin/dotfiles/i3/scripts/mic-control.sh"
+# hide_when_empty = true
 
 [[block]]
 block = "music"
-buttons = ["prev", "play", "next"]
+# buttons = ["prev", "play", "next"]
+buttons = ["play", "next"]
 hide_when_empty = true
 
 # [[block]]

@@ -52,7 +52,7 @@ bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym Mod4+d exec dmenu_run
-bindsym $mod+d exec rofi -show combi
+bindsym $mod+d exec "rofi -combi-modi window,drun,run -show combi"
 
 # Screenshot
 set $screenshot --no-startup-id gnome-screenshot
@@ -160,6 +160,8 @@ bindsym $mod+Shift+grave move container to workspace $workspace0
 # Move containers between displays
 bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Down move workspace to output down
 
 # reload the configuration file
 bindsym Mod4+Shift+c reload
@@ -207,7 +209,9 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #0C0C0C
 
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale /home/damian/Pictures/wall/dd0619ee3bd25613fd1cb9de6c6d902f.jpg
+# exec_always --no-startup-id feh --bg-scale "/home/damian/Pictures/wall/dd0619ee3bd25613fd1cb9de6c6d902f.jpg"
+exec_always --no-startup-id feh --bg-scale "$(find /home/damian/Pictures/wall/active -type f | sort -R | tail -1)"
+# exec_always --no-startup-id feh --bg-scale /home/damian/Pictures/wall/XuGkeTK.jpg
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -234,6 +238,7 @@ exec_always --no-startup-id feh --bg-scale /home/damian/Pictures/wall/dd0619ee3b
 bar {
     font pango:DejaVu Sans Mono, FontAwesome 11
     # position top
+    tray_output primary
     status_command /home/damian/.cargo/bin/i3status-rs
     colors {
       background #42354A
@@ -268,13 +273,15 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 #exec --no-startup-id sbxkb
 exec --no-startup-id pa-applet
-exec --no-startup-id orage; sleep 1; orage -t
+# exec --no-startup-id orage; sleep 1; orage -t
 exec --no-startup-id fluxgui
 #exec --no-startup-id redshift-gtk
 exec --no-startup-id dunst
 #exec --no-startup-id trackma-gtk
 exec --no-startup-id ibus-daemon
 exec --no-startup-id caffeine-indicator
+# Avature VPN service
+exec --no-startup-id /home/damian/dev/magi/src/adhoc/zscaler
 
 
 # Floating windows
@@ -301,9 +308,15 @@ exec i3-config-wizard
 
 # i3-layout-manager
 bindsym Mod4+Shift+w exec --no-startup-id /home/damian/bin/i3-layout-manager/layout_manager.sh
+# screen-manager
+bindsym Mod4+Shift+a exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/screen-manager.sh
 
 # Mune/Unmute
 bindsym $mod+c exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/mic-control.sh
+bindsym Ctrl+Escape exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/mic-control.sh
 
 # automations
-bindsym $mod+Ctrl+9 exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/totoca.sh
+bindsym $mod+Ctrl+9 exec --no-startup-id /home/damian/bin/dotfiles/i3/scripts/load-wksp-9.sh
+
+# Configuration for wide screen
+# fake-outputs 640x1440+0+0,3520x1440+640+0

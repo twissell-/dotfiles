@@ -1,0 +1,23 @@
+#!/bin/bash
+
+seconds="$(
+    curl -s -u "${TOGGL_API_TOKEN}":api_token \
+        -H "Content-Type: application/json" \
+        -X POST https://api.track.toggl.com/reports/api/v3/workspace/509024/search/time_entries/totals \
+        -d "{\"client_ids\":[57379734],\"start_date\":\"$(date '+%Y-%m-%d')\"}" |
+        jq -r '.seconds'
+)"
+
+min=14400
+obj=18000
+human_time="$(date -ud"@$seconds" +%H:%M)"
+
+if [[ "${seconds}" -lt "${min}" ]]; then
+    echo "{\"state\":\"Warning\", \"text\": \"❌ ${human_time}\"}"
+elif [[ "${seconds}" -ge "${min}" ]] && [[ "${seconds}" -lt "${obj}" ]]; then
+    echo "{\"state\":\"Info\", \"text\": \"⭕ ${human_time}\"}"
+else
+    echo "{\"state\":\"Info\", \"text\": \"🟢 ${human_time}\"}"
+fi
+
+exit 0

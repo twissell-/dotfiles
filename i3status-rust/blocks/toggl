@@ -1,0 +1,22 @@
+#!/bin/bash
+
+entry="$(curl -s -u "${TOGGL_API_TOKEN}":api_token \
+    -H "Content-Type: application/json" \
+    -X GET https://api.track.toggl.com/api/v9/me/time_entries/current)"
+
+if [[ "${entry}" == "null" ]]; then
+    echo "{\"state\":\"Info\", \"text\": \"\"}"
+else
+    description=$(jq -r ".description" <<< "${entry}" | sed 's/"/\\"/g')
+    if [[ "$(wc -c <<< "${description}")" -gt "35" ]]; then
+        description="$(cut -c 1-35 <<< "${description}").."
+    fi
+
+    now=$(date +%s)
+    duration=$(jq -r ".duration" <<< "${entry}")
+    duration=$(date -ud "@$((now + duration))" +'%T')
+
+    echo "{\"state\":\"Warning\", \"text\": \"${description} ${duration}\"}"
+fi
+
+exit 0
