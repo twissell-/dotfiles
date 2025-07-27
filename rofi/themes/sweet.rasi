@@ -1,0 +1,145 @@
+/*
+  Sweet rofi theme by skybert
+
+  - colours based on https://github.com/2bruh4me/sweet-theme which
+    again is based on https://github.com/EliverLara/Sweet
+  - based on the dracula rofi theme
+
+  Sweet colours:
+
+    #06c993
+    #06c993
+    #13131e
+    #19191e
+    #222235
+    #28283f
+    #292235
+    #49505f
+    #808693
+    #a2a9ba
+    #a2a9ba
+    #a3a3ff
+    #b8c0d4
+    #bfc2e6
+    #c7be5a
+    #e17df3
+    #f561ab
+    #f6717e
+    #f6ce55
+    #fc1c5b
+    #ff4769
+*/
+
+* {
+    font: "Source Code Pro Bold 14";
+    foreground: #06c993;
+    foreground-color: #06c993;
+    background-color: #222235;
+    background: #222235;
+    active-background: #49505f;
+    urgent-foreground: #06c993;
+    urgent-background: #ff5555;
+    selected-foreground: #f561ab;
+    selected-background: @active-background;
+    selected-urgent-background: @urgent-background;
+    selected-active-background: @active-background;
+    separatorcolor: @active-background;
+    bordercolor: @active-background;
+
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    height: 360px;
+    border: 3px;
+    border-color: @bordercolor;
+}
+
+mainbox {
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @background-color;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+prompt {
+    background-color: @foreground;
+    padding: 6px;
+    text-color: @background-color;
+    border-radius: 3px;
+    margin: 20px 0px 0px 20px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    padding: 6px;
+    margin: 20px 0px 0px 10px;
+    text-color: @foreground-color;
+    background-color: @background-color;
+}
+
+listview {
+    border: 0px 0px 0px;
+    padding: 6px 0px 0px;
+    margin: 10px 0px 0px 20px;
+    columns: 2;
+    lines: 5;
+    background-color: @background-color;
+}
+
+element {
+    padding: 5px;
+    background-color: @background-color;
+    text-color: @foreground-color  ;
+}
+
+element-icon {
+    size: 25px;
+}
+
+element selected {
+    background-color: @selected-background;
+    text-color: @selected-foreground;
+}
+
+mode-switcher {
+    spacing: 0;
+  }
+
+button {
+    padding: 10px;
+    background-color: @background-color;
+    text-color: @active-background;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+button selected {
+  background-color: @background-color;
+  text-color: @urgent-foreground ;
+}
+
+message {
+    background-color: @background-color;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+textbox {
+    padding: 6px;
+    margin: 20px 0px 0px 20px;
+    text-color: @foreground;
+    background-color: @background-color;
+}

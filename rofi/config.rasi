@@ -1,1 +1,16 @@
-@theme "/usr/share/rofi/themes/sidebar.rasi"
+configuration{
+    modi: "run,drun,window";
+    icon-theme: "Pop";
+    show-icons: true;
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun:   "   Apps   ";
+    display-run:    "   Run      ";
+    display-window: "   Win";
+    display-combi:  " 󰕘  Combi";
+    sidebar-mode: true;
+}
+
+@theme "~/bin/dotfiles/rofi/themes/twisells_sweet.rasi"

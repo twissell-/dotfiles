@@ -12,11 +12,11 @@
 #
 # vim: set foldmarker=#\ #{,#\ #}
 
-layout_dir=~/.screenlayout/
+layout_dir="${HOME}/bin/dotfiles/screenlayout"
 
 # if operating using dmenu
-options="Open arandr
-Load layout"
+options="Load layout
+Open arandr"
 if [ -z $1 ]; then
 
     ACTION=$(echo "$options" | rofi -i -dmenu -no-custom -p "Select action")
@@ -38,7 +38,12 @@ case "$ACTION" in
         exit
     else
         "${layout_dir}/${layout}"
-        notify-send -u low -t 2000 "Loaded ${layout%%.sh}" -h string:x-canonical-private-synchronous:anything
+        ln -s "${layout_dir}/${layout}" "${layout_dir}/.latest"
+
+        sleep 0.5
+        feh --bg-scale "$(find "${HOME}/bin/dotfiles/wallpaper/active" -type f ! -name .gitkeep | sort -R | tail -1)"
+        "${HOME}/bin/dotfiles/polybar/launch.sh"
+        notify-send -u low -t 5000 "Loaded ${layout%%.sh}" -h string:x-canonical-private-synchronous:anything
 
     fi
 

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# echo "  
+
+if command -v pactl &> /dev/null; then
+    is_muted=$(pacmd list-sources | sed -n '/* index: /,/current latency/p' | grep 'muted:' | awk '{print $2}')
+
+    if ! grep -q RUNNING /proc/asound/card*/pcm0c/sub0/status; then
+        echo ""
+    elif [[ "${is_muted}" = "yes" ]]; then
+        echo " "
+        exit 1
+    else
+        echo " "
+        exit 0
+    fi
+
+fi
+
+if command -v alsamixer &> /dev/null; then
+    if amixer get Capture | grep -q '\[off\]'; then
+        echo " "
+    else
+        echo ""
+    fi
+fi

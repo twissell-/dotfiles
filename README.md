@@ -84,7 +84,16 @@ snap install shfmt
 ### i3 configuration
 
 ```sh
-sudo apt update && sudo apt install scrot imagemagick -y
+sudo apt update
+# lockscreen
+sudo apt install -y scrot imagemagick
+# OPTIONAL volumen control
+sudo apt install -y pulseaudio-utils
+# fonts
+sudo apt install fonts-powerline
+download Droid Sans Mono Nerdfont
+# used by screen-mananger
+sudo apt install arandr
 ```
 
 ### Browser
@@ -92,3 +101,16 @@ sudo apt update && sudo apt install scrot imagemagick -y
 - Download and install the `.deb` from its website.
 - Download and install bitwarden extension.
 - Login into vivaldi and sync.
+
+### Polybar
+
+```
+sudo apt install polybar
+```
+
+### Starship prompt
+```
+curl -sS https://starship.rs/install.sh | sh
+! grep -q 'eval "$(starship init bash)"' ~/.bashrc &&
+  echo -e '\n\n# starship prompt\neval "$(starship init bash)"\n\n' >> ~/.bashrc
+```

@@ -30,12 +30,39 @@ function create_backup() {
 # ln -s /home/damian/bin/dotfiles/i3status-rust/ ~/.config/
 
 _install_i3() {
-    local config_file="${HOME}/i3/config"
+    local config_file="${HOME}/.config/i3/config"
 
     mkdir -p "$(dirname "${config_file}")"
-    test -r ~/.config/i3/config && ! test -L ~/.config/i3/config && create_backup ~/.config/i3/config
+    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
 
-    ln -sf "${src}/i3/config" ~/.config/i3/
+    ln -sf "${src}/i3/config" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
+}
+
+_install_rofi() {
+    local config_file="${HOME}/.config/rofi/config.rasi"
+
+    mkdir -p "$(dirname "${config_file}")"
+    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+
+    ln -sf "${src}/rofi/config.rasi" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
+}
+
+_install_starship() {
+    local config_file="${HOME}/.config/starship.toml"
+
+    mkdir -p "$(dirname "${config_file}")"
+    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+
+    ln -sf "${src}/starship/starship.toml" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
+}
+
+_install_dunst() {
+    local config_file="${HOME}/.config/dunst/dunstrc"
+
+    mkdir -p "$(dirname "${config_file}")"
+    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+
+    ln -sf "${src}/dunst/dunstrc" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
 }
 
 main() {
