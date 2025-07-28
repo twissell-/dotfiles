@@ -65,6 +65,23 @@ _install_dunst() {
     ln -sf "${src}/dunst/dunstrc" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
 }
 
+_install_gnome_terminal() {
+    # shellcheck disable=SC2155
+    local backup_file="${HOME}/.config/gnome-terminal/profile.dconf.$(date +%s).bk"
+    local profile_file="${src}/gnome-terminal/profiles.dconf"
+
+    if ! diff "${profile_file}" <(dconf dump /org/gnome/terminal/legacy/profiles:/) &> /dev/null; then
+        mkdir -p "$(dirname "${backup_file}")"
+        dconf dump /org/gnome/terminal/legacy/profiles:/ > "${backup_file}"
+
+        # if this doesn't work, try:
+        # dconf reset -f /org/gnome/terminal/legacy/profiles:/
+        dconf load -f /org/gnome/terminal/legacy/profiles:/ < "${src}/gnome-terminal/profiles.dconf" && echo "✔ Done" || echo "✖ Failed"
+    else
+        echo " Skipped"
+    fi
+}
+
 main() {
     declare -f | sed -nr 's#^(_install_.*)\(\)#\1#p' |
         sort |
