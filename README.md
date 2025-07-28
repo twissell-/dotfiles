@@ -92,6 +92,7 @@ sudo apt install -y pulseaudio-utils
 # fonts
 sudo apt install fonts-powerline
 # download Droid Sans Mono Nerdfont
+# download Victor Mono Nerdfont
 # used by screen-mananger
 sudo apt install arandr
 ```

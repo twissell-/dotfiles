@@ -3,6 +3,11 @@ set -o pipefail
 
 # based on https://github.com/zbaylin/rofi-wifi-menu/blob/master/rofi-wifi-menu.sh
 
+function _rofi() {
+    # shellcheck disable=SC2068
+    rofi -dmenu -theme-str '* {font: "Monospace Bold 14";} listview {columns: 1;}' $@ # -lines "$LINENUM" -a "$HIGHLINE" -location "$POSITION" -yoffset "$YOFF" -xoffset "$XOFF" -font "$FONT" -width -"$RWIDTH"
+}
+
 function _notify() {
     local msg="${1}"
 
@@ -11,7 +16,7 @@ function _notify() {
 
 function _connect() {
     local ssid="${1}"
-    local pass="${2}"
+    local pass="${2:-}"
     local known_nets
     local current_net
 
@@ -39,7 +44,7 @@ function _manual_connection() {
     local msg
 
     # Manual entry of the SSID and password (if appplicable)
-    input=$(echo "enter the SSID of the network (SSID[,password])" | rofi -dmenu -p "SSID: " -lines 1)
+    input=$(echo "enter the SSID of the network (SSID[,password])" | _rofi -p "SSID: " -lines 1)
     # Separating the password from the entered string
     ssid=$(echo "$input" | awk -F "," '{print $1}')
     pass=$(echo "$input" | awk -F "," '{print $2}')
@@ -54,7 +59,7 @@ function _search_networks() {
 
     # TODO: see how to remove duplicates
     net_list=$(nmcli --fields "bars,ssid,security" device wifi list | sed '/\ --\ /d' | uniq | tail -n +2)
-    entry=$(echo -e "$net_list" | rofi -dmenu -p "SSID: ") # -lines "$LINENUM" -a "$HIGHLINE" -location "$POSITION" -yoffset "$YOFF" -xoffset "$XOFF" -font "$FONT" -width -"$RWIDTH"
+    entry=$(echo -e "$net_list" | _rofi -p "SSID: ")
 
     ssid=$(echo "$entry" | awk -F " " '{print $2}')
 
@@ -74,7 +79,7 @@ function main() {
         options+="Turn Wi-Fi on"
     fi
 
-    entry="$(echo -e "${options}" | rofi -dmenu -p "Wi-Fi menu: ")"
+    entry="$(echo -e "${options}" | _rofi -p "Wi-Fi menu: ")"
 
     case "${entry}" in
     "Search networks")
