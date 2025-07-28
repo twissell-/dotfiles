@@ -216,3 +216,12 @@ bindsym Ctrl+Escape exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/mic-co
 
 exec_always --no-startup-id "${HOME}/bin/dotfiles/screenlayout/.latest"
 bindsym Mod4+Shift+a exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/screen-manager.sh"
+
+# bind apps to workspaces
+# xprop WM_CLASS
+
+assign [class="vivaldi-stable"] $ws2
+assign [class="Vivaldi-stable"] $ws2
+
+assign [class="code"] $ws4
+assign [class="Code"] $ws4
