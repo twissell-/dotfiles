@@ -91,7 +91,7 @@ sudo apt install -y scrot imagemagick
 sudo apt install -y pulseaudio-utils
 # fonts
 sudo apt install fonts-powerline
-download Droid Sans Mono Nerdfont
+# download Droid Sans Mono Nerdfont
 # used by screen-mananger
 sudo apt install arandr
 ```
