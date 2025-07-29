@@ -57,6 +57,8 @@ function _search_networks() {
     local entry
     local ssid
 
+    _notify "Scanning networks..."
+
     # TODO: see how to remove duplicates
     net_list=$(nmcli --fields "bars,ssid,security" device wifi list | sed '/\ --\ /d' | uniq | tail -n +2)
     entry=$(echo -e "$net_list" | _rofi -p "SSID: ")
