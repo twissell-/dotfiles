@@ -170,6 +170,9 @@ new_window 1pixel
 # disable hover focus
 focus_follows_mouse no
 
+# hide borders
+hide_edge_borders both
+
 # Colours
 # class                 border  bground text    indicator child_border
 client.focused          #673888 #673888 #FFFFFF #673888   #673888
