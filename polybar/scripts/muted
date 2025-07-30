@@ -4,15 +4,15 @@
 
 if command -v pactl &> /dev/null; then
     is_muted=$(pacmd list-sources | sed -n '/* index: /,/current latency/p' | grep 'muted:' | awk '{print $2}')
-
     if [[ "${is_muted}" = "yes" ]]; then
         echo " "
+    else
+        echo ""
     fi
-
-fi
-
-if command -v alsamixer &> /dev/null; then
+elif command -v alsamixer &> /dev/null; then
     if amixer get Capture | grep -q '\[off\]'; then
         echo " "
+    else
+        echo ""
     fi
 fi
