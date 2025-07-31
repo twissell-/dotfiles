@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TOGGL_API_TOKEN='0325fbaa8044ba004af27cfef8a811a3'
+TOGGL_API_TOKEN="$(pass dotfiles/toggl-api-token)"
 
 entry="$(curl -s -u "${TOGGL_API_TOKEN}":api_token \
     -H "Content-Type: application/json" \
