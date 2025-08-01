@@ -1,0 +1,25 @@
+#!/bin/bash
+
+WORKSPACE_ID="$(pass dotfiles/clockify/workspace-id)"
+USER_ID="$(pass dotfiles/clockify/user-id)"
+API_TOKEN="$(pass dotfiles/clockify/api-token)"
+
+entry="$(curl -s \
+    -H "Content-Type: application/json" \
+    -H "X-Api-Key: ${API_TOKEN}" \
+    -X GET "https://api.clockify.me/api/v1/workspaces/${WORKSPACE_ID}/user/${USER_ID}/time-entries?in-progress=true")"
+
+if [[ "${entry}" != "[]" ]]; then
+    description=$(jq -r ".[0].description" <<< "${entry}")
+    if [[ "$(wc -c <<< "${description}")" -gt "35" ]]; then
+        description="$(cut -c 1-35 <<< "${description}").."
+    fi
+
+    start=$(date -d "$(jq -r ".[0].timeInterval.start" <<< "${entry}")" +%s)
+    now=$(date +%s)
+    duration=$(date -ud "@$((now - start))" +'%T')
+
+    echo "${description} ${duration}"
+fi
+
+exit 0

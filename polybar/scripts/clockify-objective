@@ -1,0 +1,29 @@
+#!/bin/bash
+
+WORKSPACE_ID="$(pass dotfiles/clockify/workspace-id)"
+API_TOKEN="$(pass dotfiles/clockify/api-token)"
+
+start_date="$(date -d 'today 00:00:00' +"%Y-%m-%d")"
+end_date="$(date -d 'tomorrow 00:00:00' +"%Y-%m-%d")"
+
+min_objective=16200
+obj_objective=18000
+
+report="$(curl -s \
+    -H "Content-Type: application/json" \
+    -H "X-Api-Key: ${API_TOKEN}" \
+    -X POST "https://reports.api.clockify.me/v1/workspaces/${WORKSPACE_ID}/reports/detailed" \
+    -d "{\"dateRangeStart\": \"${start_date}T00:00:00.000Z\", \"dateRangeEnd\": \"${end_date}T00:00:00.000Z\", \"clients\": {\"contains\": \"CONTAINS\", \"ids\": [\"688bc918c6e4d17291035a93\"]}, \"detailedFilter\": { \"options\": { \"totals\": \"CALCULATE\" } } }")"
+
+total_seconds=$(jq -r '.totals[0].totalTime' <<< "${report}" 2> /dev/null || echo "0")
+total=$(date -ud "@${total_seconds}" +'%H:%M' 2> /dev/null || echo "00:00")
+
+if [[ "${total_seconds}" -lt "${min_objective}" ]]; then
+    echo "✖ ${total}"
+elif [[ "${total_seconds}" -ge "${min_objective}" ]] && [[ "${total_seconds}" -lt "${obj_objective}" ]]; then
+    echo "- ${total}"
+else
+    echo "✔ ${total}"
+fi
+
+exit 0
