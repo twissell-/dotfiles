@@ -19,6 +19,7 @@
 # Constants
 divider="---------"
 goback="Back"
+ROFI_THEME_OVERRIDE='* {font: "Monospace Bold 14";} listview {columns: 1; lines: 15;} window { height: 720px; width: 480px;}'
 
 # Checks if bluetooth controller is powered on
 power_on() {
@@ -307,7 +308,7 @@ show_menu() {
 # Rofi command to pipe into, can add any options here
 function _rofi() {
     # shellcheck disable=SC2068
-    rofi -dmenu -theme-str '* {font: "Monospace Bold 14";} listview {columns: 1; lines: 15;} window { height: 720px; width: 480px;}' $@
+    rofi -dmenu -theme-str "${ROFI_THEME_OVERRIDE}" $@
 }
 
 case "$1" in

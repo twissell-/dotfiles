@@ -3,9 +3,11 @@ set -o pipefail
 
 # based on https://github.com/zbaylin/rofi-wifi-menu/blob/master/rofi-wifi-menu.sh
 
+ROFI_THEME_OVERRIDE='* {font: "Monospace Bold 14";} listview {columns: 1; lines: 15;} window { height: 720px; width: 480px;}'
+
 function _rofi() {
     # shellcheck disable=SC2068
-    rofi -dmenu -theme-str '* {font: "Monospace Bold 14";} listview {columns: 1;}' $@ # -lines "$LINENUM" -a "$HIGHLINE" -location "$POSITION" -yoffset "$YOFF" -xoffset "$XOFF" -font "$FONT" -width -"$RWIDTH"
+    rofi -dmenu -theme-str "${ROFI_THEME_OVERRIDE}" $@
 }
 
 function _notify() {
@@ -60,7 +62,7 @@ function _search_networks() {
     _notify "Scanning networks..."
 
     # TODO: see how to remove duplicates
-    net_list=$(nmcli --fields "bars,ssid,security" device wifi list | sed '/\ --\ /d' | uniq | tail -n +2)
+    net_list=$(nmcli --fields "bars,ssid" device wifi list | sed '/\ --\ /d' | uniq | tail -n +2)
     entry=$(echo -e "$net_list" | _rofi -p "SSID: ")
 
     ssid=$(echo "$entry" | awk -F " " '{print $2}')

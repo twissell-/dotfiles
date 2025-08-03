@@ -222,6 +222,12 @@ bindsym Mod4+Shift+a exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/scree
 # Bluetooth
 bindsym Mod4+Shift+b exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-bluetooth.sh"
 
+# Pass
+bindsym Mod4+Shift+p exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-pass.sh"
+
+# Wi-Fi
+bindsym Mod4+Shift+w exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-wifi.sh"
+
 # bind apps to workspaces
 # xprop WM_CLASS
 

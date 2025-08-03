@@ -1,11 +1,12 @@
 #!/bin/bash -eu
 set -o pipefail
 
-password_store="${HOME}/.password-store/"
+PASSWORD_STORE="${HOME}/.password-store/"
+ROFI_THEME_OVERRIDE='* {font: "Monospace Bold 14";} listview {columns: 1; lines: 15;} window { height: 720px; width: 480px;}'
 
 function _rofi() {
     # shellcheck disable=SC2068
-    rofi -dmenu -theme-str '* {font: "Monospace Bold 14";} listview {columns: 1;}' $@ # -lines "$LINENUM" -a "$HIGHLINE" -location "$POSITION" -yoffset "$YOFF" -xoffset "$XOFF" -font "$FONT" -width -"$RWIDTH"
+    rofi -dmenu -theme-str "${ROFI_THEME_OVERRIDE}" $@ # -lines "$LINENUM" -a "$HIGHLINE" -location "$POSITION" -yoffset "$YOFF" -xoffset "$XOFF" -font "$FONT" -width -"$RWIDTH"
 }
 
 function _notify() {
@@ -15,7 +16,7 @@ function _notify() {
 }
 
 function _list_password() {
-    cd "${password_store}" && find . -type f ! -name .gpg-id | sed -e "s/\.\///" -e 's/\.gpg//'
+    (cd "${PASSWORD_STORE}"; find . -type f -name '*.gpg') | sort -f | sed -e "s/\.\///" -e 's/\.gpg//'
 }
 
 function main() {
@@ -34,24 +35,6 @@ function main() {
     entry="$(_list_password | _rofi -p "pass: ")"
 
     pass -c "${entry}" 2> /dev/null
-
-    # case "${entry}" in
-    # "Search networks")
-    #     _search_networks
-    #     ;;
-    # "Manual connection")
-    #     _manual_connection
-    #     ;;
-    # "Turn Wi-Fi off")
-    #     nmcli radio wifi off
-    #     ;;
-    # "Turn Wi-Fi on")
-    #     nmcli radio wifi on
-    #     ;;
-    # *)
-    #     :
-    #     ;;
-    # esac
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
