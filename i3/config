@@ -230,3 +230,6 @@ assign [class="Vivaldi-stable"] $ws2
 
 assign [class="code"] $ws4
 assign [class="Code"] $ws4
+
+assign [class="clockify"] $ws9
+assign [class="Clockify"] $ws9

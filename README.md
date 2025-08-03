@@ -154,3 +154,7 @@ gpg --list-keys
 gpg --edit-key <KEY_ID>
 gpg> trust
 ```
+
+### Clockify
+
+Download de deb from the website and install
