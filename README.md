@@ -110,8 +110,47 @@ sudo apt install polybar
 ```
 
 ### Starship prompt
+
 ```
 curl -sS https://starship.rs/install.sh | sh
 ! grep -q 'eval "$(starship init bash)"' ~/.bashrc &&
   echo -e '\n\n# starship prompt\neval "$(starship init bash)"\n\n' >> ~/.bashrc
+```
+
+### pass pasword manager
+
+```
+sudo apt install pass
+```
+
+Clone password repository
+
+```
+git clone git@github.com:twissell-/******.git ~/.password-store
+```
+
+Add post-commit hook for syncing
+
+```
+echo "#!/bin/sh
+set -x
+git pull --rebase # get edits by other devices
+git push          # send the latest commit
+" > ~/.password-store/.git/hooks/post-commit
+chmod +x ~/.password-store/.git/hooks/post-commit
+```
+
+Import gpgp keys
+
+```
+gpg --import pub.gpg
+gpg --allow-secret-key-import --import priv.gpg
+```
+
+Trust the key
+
+```
+gpg --list-keys
+gpg --edit-key <KEY_ID>
+gpg> trust
 ```
