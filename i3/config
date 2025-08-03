@@ -205,7 +205,7 @@ client.background       #0C0C0C
 
 exec_always --no-startup-id "${HOME}/bin/dotfiles/polybar/launch.sh"
 
-# KEYBINDINGS
+# KEYBINDINGS & EXTRA SCRIPTS
 
 # Volume Keys
 bindsym Mod4+equal exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/volume-control.sh up"
@@ -215,10 +215,12 @@ bindsym Mod4+minus exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/volume-
 bindsym $mod+c exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/mic-control.sh"
 bindsym Ctrl+Escape exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/mic-control.sh"
 
-# SCREEN MANAGER
-
+# Screen Manager
 exec_always --no-startup-id "${HOME}/bin/dotfiles/screenlayout/.latest"
 bindsym Mod4+Shift+a exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/screen-manager.sh"
+
+# Bluetooth
+bindsym Mod4+Shift+b exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-bluetooth.sh"
 
 # bind apps to workspaces
 # xprop WM_CLASS

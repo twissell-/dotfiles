@@ -182,7 +182,7 @@ toggle_trust() {
 # Useful for status bars like polybar, etc.
 print_status() {
     if power_on; then
-        printf ''
+        printf ""
 
         paired_devices_cmd="devices Paired"
         # Check if an outdated version of bluetoothctl is used to preserve backwards compatibility
@@ -209,6 +209,7 @@ print_status() {
         printf "\n"
     else
         echo ""
+        return 1
     fi
 }
 
@@ -231,7 +232,7 @@ device_menu() {
     options="$connected\n$paired\n$trusted\n$divider\n$goback\nExit"
 
     # Open rofi menu, read chosen option
-    chosen="$(echo -e "$options" | $rofi_command "$device_name")"
+    chosen="$(echo -e "$options" | _rofi -p "$device_name")"
 
     # Match chosen option to command
     case "$chosen" in
@@ -276,7 +277,7 @@ show_menu() {
     fi
 
     # Open rofi menu, read chosen option
-    chosen="$(echo -e "$options" | $rofi_command "Bluetooth")"
+    chosen="$(echo -e "$options" | _rofi -p "Bluetooth")"
 
     # Match chosen option to command
     case "$chosen" in
@@ -304,7 +305,10 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu $* -p"
+function _rofi() {
+    # shellcheck disable=SC2068
+    rofi -dmenu -theme-str '* {font: "Monospace Bold 14";} listview {columns: 1; lines: 15;} window { height: 720px; width: 480px;}' $@
+}
 
 case "$1" in
 --status)
