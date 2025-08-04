@@ -20,6 +20,8 @@ if [[ "${entry}" != "[]" ]]; then
     duration=$(date -ud "@$((now - start))" +'%T')
 
     echo "${description} ${duration}"
+else
+    echo ""
 fi
 
 exit 0
