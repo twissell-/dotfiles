@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# echo "  
+
+WORK_VPN_HOST="avasso-server-stage.avature.net"
+
+if ping -W1 -c1 "${WORK_VPN_HOST}" &> /dev/null; then
+    echo "󰕥 "
+else
+    echo "󰦞 "
+fi
