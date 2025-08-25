@@ -228,6 +228,9 @@ bindsym Mod4+Shift+p exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-
 # Wi-Fi
 bindsym Mod4+Shift+w exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-wifi.sh"
 
+# Clockify
+bindsym Mod4+Shift+t exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-clockify.sh"
+
 # bind apps to workspaces
 # xprop WM_CLASS
 

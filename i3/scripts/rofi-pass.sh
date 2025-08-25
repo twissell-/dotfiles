@@ -16,21 +16,14 @@ function _notify() {
 }
 
 function _list_password() {
-    (cd "${PASSWORD_STORE}"; find . -type f -name '*.gpg') | sort -f | sed -e "s/\.\///" -e 's/\.gpg//'
+    (
+        cd "${PASSWORD_STORE}"
+        find . -type f -name '*.gpg'
+    ) | sort -f | sed -e "s/\.\///" -e 's/\.gpg//'
 }
 
 function main() {
-    local options
     local entry
-
-    options="Search networks\n"
-    options+="Manual connection\n"
-
-    if nmcli -fields WIFI g | grep -q "enabled"; then
-        options+="Turn Wi-Fi off"
-    else
-        options+="Turn Wi-Fi on"
-    fi
 
     entry="$(_list_password | _rofi -p "pass: ")"
 
