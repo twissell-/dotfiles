@@ -234,11 +234,25 @@ bindsym Mod4+Shift+t exec --no-startup-id "${HOME}/bin/dotfiles/i3/scripts/rofi-
 # bind apps to workspaces
 # xprop WM_CLASS
 
+assign [class="obsidian"] $ws0
+
+assign [class="Mail"] $ws1
+assign [class="thunderbird"] $ws1
+
 assign [class="vivaldi-stable"] $ws2
 assign [class="Vivaldi-stable"] $ws2
 
 assign [class="code"] $ws4
 assign [class="Code"] $ws4
+assign [class="Windsurf"] $ws4
+assign [class="windsurf"] $ws4
+
+assign [class="blueman-manager"] $ws8
+assign [class="Blueman-manager"] $ws8
+assign [class="pavucontrol"] $ws8
+assign [class="Pavucontrol"] $ws8
 
 assign [class="clockify"] $ws9
 assign [class="Clockify"] $ws9
+assign [class="zen"] $ws9
+assign [class="Navigator"] $ws9

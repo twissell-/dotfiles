@@ -33,26 +33,44 @@ _install_i3() {
     local config_file="${HOME}/.config/i3/config"
 
     mkdir -p "$(dirname "${config_file}")"
-    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+    # test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
 
+    if [[ -L "${config_file}" ]]; then
+        echo " Skipped"
+        return 0
+    fi
+
+    create_backup "${config_file}"
     ln -sf "${src}/i3/config" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
 }
 
 _install_rofi() {
-    local config_file="${HOME}/.config/rofi/config.rasi"
+    local config_dir="${HOME}/.config/rofi"
 
-    mkdir -p "$(dirname "${config_file}")"
-    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+    mkdir -p "${config_dir}"
+    # test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
 
-    ln -sf "${src}/rofi/config.rasi" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
+    if [[ -L "${config_dir}" ]]; then
+        echo " Skipped"
+        return 0
+    fi
+
+    create_backup "${config_dir}"
+    ln -sf "${src}/rofi" "${config_dir}" && echo "✔ Done" || echo "✖ Failed"
 }
 
 _install_starship() {
     local config_file="${HOME}/.config/starship.toml"
 
     mkdir -p "$(dirname "${config_file}")"
-    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+    # test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
 
+    if [[ -L "${config_file}" ]]; then
+        echo " Skipped"
+        return 0
+    fi
+
+    create_backup "${config_file}"
     ln -sf "${src}/starship/starship.toml" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
 }
 
@@ -60,8 +78,14 @@ _install_dunst() {
     local config_file="${HOME}/.config/dunst/dunstrc"
 
     mkdir -p "$(dirname "${config_file}")"
-    test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
+    # test -r "${config_file}" && ! test -L "${config_file}" && create_backup "${config_file}"
 
+    if [[ -L "${config_file}" ]]; then
+        echo " Skipped"
+        return 0
+    fi
+
+    create_backup "${config_file}"
     ln -sf "${src}/dunst/dunstrc" "${config_file}" && echo "✔ Done" || echo "✖ Failed"
 }
 
@@ -82,13 +106,29 @@ _install_gnome_terminal() {
     fi
 }
 
+_install_autorandr() {
+    local config_dir="${HOME}/.config/autorandr"
+
+    mkdir -p "${config_dir}"
+    # test -r "${config_dir}" && ! test -L "${config_dir}" && create_backup "${config_dir}"
+
+    if [[ -L "${config_dir}" ]]; then
+        echo " Skipped"
+        return 0
+    fi
+
+    create_backup "${config_dir}" && rm -rf "${config_dir}"
+    ln -sf "${src}/autorandr" "${config_dir}" && echo "✔ Done" || echo "✖ Failed"
+}
+
+
 main() {
     declare -f | sed -nr 's#^(_install_.*)\(\)#\1#p' |
         sort |
         while read f; do
-            printf "⤷ %s\\n" "${f//_install_/}"
+            printf "⤷ %s\\t" "${f//_install_/}"
             $f
-        done
+        done | column -t
 }
 
 main "$@"

@@ -184,7 +184,7 @@ toggle_trust() {
 print_status() {
     if power_on; then
         printf ""
-
+        return 0
         paired_devices_cmd="devices Paired"
         # Check if an outdated version of bluetoothctl is used to preserve backwards compatibility
         if (($(echo "$(bluetoothctl version | cut -d ' ' -f 2) < 5.65" | bc -l))); then

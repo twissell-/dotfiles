@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if command -v feh &> /dev/null; then
+    feh --bg-scale "$(find "${HOME}/bin/dotfiles/wallpaper/active" -type f ! -name .gitkeep | sort -R | tail -1)"
+fi
+
+if command -v polybar &> /dev/null; then
+    "${HOME}/bin/dotfiles/polybar/launch.sh"
+fi
